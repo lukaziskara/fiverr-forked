@@ -61,8 +61,9 @@ const Add = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(e, state);
     mutation.mutate(state);
-    // navigate("/mygigs")
+    navigate("/mygigs");
   };
 
   return (
@@ -80,9 +81,9 @@ const Add = () => {
             />
             <label htmlFor="">Category</label>
             <select name="cat" id="cat" onChange={handleChange}>
-              <option value="design">Design</option>
-              <option value="web">Web Development</option>
-              <option value="animation">Animation</option>
+              <option value="design">საჭმელი</option>
+              <option value="web">მანქანის ნაწილები</option>
+              <option value="animation">სხვა</option>
               <option value="music">Music</option>
             </select>
             <div className="images">

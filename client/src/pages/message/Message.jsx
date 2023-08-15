@@ -40,7 +40,7 @@ const Message = () => {
     <div className="message">
       <div className="container">
         <span className="breadcrumbs">
-          <Link to="/messages">Messages</Link> > John Doe >
+          <Link to="/messages">Messages</Link> John Doe
         </span>
         {isLoading ? (
           "loading"
@@ -49,7 +49,10 @@ const Message = () => {
         ) : (
           <div className="messages">
             {data.map((m) => (
-              <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
+              <div
+                className={m.userId === currentUser._id ? "owner item" : "item"}
+                key={m._id}
+              >
                 <img
                   src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt=""

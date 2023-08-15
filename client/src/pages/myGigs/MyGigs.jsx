@@ -7,16 +7,18 @@ import newRequest from "../../utils/newRequest";
 
 function MyGigs() {
   const currentUser = getCurrentUser();
-
+  console.log(currentUser);
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
     queryFn: () =>
-      newRequest.get(`/gigs?userId=${currentUser.id}`).then((res) => {
+      newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
+        console.log(res.data);
         return res.data;
       }),
   });
+  console.log(data);
 
   const mutation = useMutation({
     mutationFn: (id) => {
@@ -60,7 +62,9 @@ function MyGigs() {
                 <td>
                   <img className="image" src={gig.cover} alt="" />
                 </td>
-                <td>{gig.title}</td>
+                <td>
+                  <Link to={`/gig/${gig._id}`}>{gig.title}</Link>
+                </td>
                 <td>{gig.price}</td>
                 <td>{gig.sales}</td>
                 <td>

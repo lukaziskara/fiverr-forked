@@ -9,7 +9,7 @@ export const createGig = async (req, res, next) => {
     userId: req.userId,
     ...req.body,
   });
-
+  console.log(newGig);
   try {
     const savedGig = await newGig.save();
     res.status(201).json(savedGig);
@@ -40,6 +40,7 @@ export const getGig = async (req, res, next) => {
 };
 export const getGigs = async (req, res, next) => {
   const q = req.query;
+  console.log("req", req, "res", res);
   const filters = {
     ...(q.userId && { userId: q.userId }),
     ...(q.cat && { cat: q.cat }),
@@ -54,6 +55,7 @@ export const getGigs = async (req, res, next) => {
   try {
     const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(gigs);
+    console.log("getGigs", gigs);
   } catch (err) {
     next(err);
   }

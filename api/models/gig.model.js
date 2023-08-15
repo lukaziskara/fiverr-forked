@@ -13,7 +13,7 @@ const GigSchema = new Schema(
     },
     desc: {
       type: String,
-      required: true,
+      // required: true,
     },
     totalStars: {
       type: Number,
@@ -25,43 +25,39 @@ const GigSchema = new Schema(
     },
     cat: {
       type: String,
-      required: true,
+      // required: true,
     },
     price: {
       type: Number,
-      required: true,
+      // required: true,
     },
-    cover: {
-      type: String,
-      required: true,
-    },
-    images: {
-      type: [String],
-      required: false,
-    },
-    userId: {
-      type: String,
-      required: true,
-    },
+    // cover: {
+    //   type: String,
+    //   // required: true,
+    // },
+    // images: {
+    //   type: [String],
+    //   // required: false,
+    // },
     shortTitle: {
       type: String,
-      required: true,
+      // required: true,
     },
     shortDesc: {
       type: String,
-      required: true,
+      // required: true,
     },
     deliveryTime: {
       type: Number,
-      required: true,
+      // required: true,
     },
     revisionNumber: {
       type: Number,
-      required: true,
+      // required: true,
     },
     features: {
       type: [String],
-      required: false,
+      // required: false,
     },
     sales: {
       type: Number,

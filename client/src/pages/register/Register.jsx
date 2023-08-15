@@ -34,11 +34,12 @@ function Register() {
 
     const url = await upload(file);
     try {
+      console.log(user);
       await newRequest.post("/auth/register", {
         ...user,
         img: url,
       });
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
     }

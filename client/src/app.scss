@@ -3,4 +3,16 @@
     text-decoration: none;
     color: inherit;
   }
+  .cntn {
+    // background-color: rgb(1, 93, 1);
+  }
+  .app {
+    margin: auto;
+    width: 100%;
+  }
+  @media only screen and (min-width: 600px) {
+    .app {
+      width: 90%;
+    }
+  }
 }

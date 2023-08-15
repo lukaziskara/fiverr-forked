@@ -10,11 +10,13 @@ export const register = async (req, res, next) => {
       ...req.body,
       password: hash,
     });
+    console.log(newUser);
 
     await newUser.save();
     res.status(201).send("User has been created.");
   } catch (err) {
     next(err);
+    console.log("ერორი", err);
   }
 };
 export const login = async (req, res, next) => {

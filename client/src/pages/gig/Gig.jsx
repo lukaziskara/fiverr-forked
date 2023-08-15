@@ -1,6 +1,6 @@
 import React from "react";
 import "./Gig.scss";
-import { Slider } from "infinite-react-carousel/lib";
+// import { Slider } from "infinite-react-carousel/lib";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
@@ -69,12 +69,12 @@ function Gig() {
                 )}
               </div>
             )}
-            <Slider slidesToShow={1} arrowsScroll={1} className="slider">
+            {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider">
               {data.images.map((img) => (
                 <img key={img} src={img} alt="" />
               ))}
-            </Slider>
-            <h2>About This Gig</h2>
+            </Slider> */}
+            <h2>საქონელის შესახებ</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
               "loading"
@@ -82,7 +82,7 @@ function Gig() {
               "Something went wrong!"
             ) : (
               <div className="seller">
-                <h2>About The Seller</h2>
+                <h2>მფლობელის შესახებ</h2>
                 <div className="user">
                   <img src={dataUser.img || "/img/noavatar.jpg"} alt="" />
                   <div className="info">
@@ -105,24 +105,24 @@ function Gig() {
                 <div className="box">
                   <div className="items">
                     <div className="item">
-                      <span className="title">From</span>
+                      <span className="title">მდებარეობა</span>
                       <span className="desc">{dataUser.country}</span>
                     </div>
-                    <div className="item">
+                    {/* <div className="item">
                       <span className="title">Member since</span>
                       <span className="desc">Aug 2022</span>
-                    </div>
-                    <div className="item">
+                    </div> */}
+                    {/* <div className="item">
                       <span className="title">Avg. response time</span>
                       <span className="desc">4 hours</span>
-                    </div>
-                    <div className="item">
+                    </div> */}
+                    {/* <div className="item">
                       <span className="title">Last delivery</span>
                       <span className="desc">1 day</span>
-                    </div>
+                    </div> */}
                     <div className="item">
-                      <span className="title">Languages</span>
-                      <span className="desc">English</span>
+                      <span className="title">სალაპარაკო ენა</span>
+                      <span className="desc">ქართული</span>
                     </div>
                   </div>
                   <hr />
@@ -157,7 +157,7 @@ function Gig() {
               ))}
             </div>
             <Link to={`/pay/${id}`}>
-            <button>Continue</button>
+              <button>Continue</button>
             </Link>
           </div>
         </div>
