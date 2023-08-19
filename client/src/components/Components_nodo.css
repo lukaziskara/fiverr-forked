@@ -1,0 +1,57 @@
+
+
+.chapter {
+    margin: 4em;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.839);
+    box-shadow: 3px 8px 39px -5px rgba(74,74,74,0.78);
+    border-radius: 10px;
+}
+.topic-div {
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.dictionary{
+    font-size: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.word{
+    background-color: rgb(255, 255, 255);
+    padding: 0.5em;
+    margin: 1em;
+    border-radius: 10px;
+    border: 1px dotted blue;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.word:hover{
+    transform: translateY(-3px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 5px 0px rgba(0, 38, 207, 0.78);
+}
+
+button{
+    background-color: rgb(56, 102, 227);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 0.5em;
+    margin: 1em;
+}
+
+.left_card{
+    padding: 0.3em;
+    margin: 0.8em;
+    background-color: rgb(207, 207, 207);
+}
+
+.t_word{
+    display: flex;
+    flex-wrap: wrap;
+}
+
