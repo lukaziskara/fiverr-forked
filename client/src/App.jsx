@@ -9,6 +9,7 @@ import Gig from "./pages/gig/Gig";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Add from "./pages/add/Add";
+import AddData from "./pages/addData/AddData";
 import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
@@ -90,6 +91,10 @@ function App() {
         {
           path: "/game",
           element: <Game />,
+        },
+        {
+          path: "/add-data",
+          element: <AddData />,
         },
       ],
     },

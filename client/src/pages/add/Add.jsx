@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./Add.scss";
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
@@ -14,6 +14,7 @@ const Add = () => {
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
   const handleChange = (e) => {
+    console.log(e.target);
     dispatch({
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
@@ -60,10 +61,10 @@ const Add = () => {
   });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     console.log(e, state);
+    e.preventDefault();
     mutation.mutate(state);
-    navigate("/mygigs");
+    // navigate("/mygigs");
   };
 
   return (

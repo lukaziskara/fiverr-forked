@@ -35,7 +35,7 @@ function Navbar() {
   };
 
   return (
-    <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
+    <div className={active || pathname !== "/" ? "navbar " : "navbar"}>
       <div className="container">
         <div className="logo">
           <Link className="link" to="/">
@@ -78,7 +78,9 @@ function Navbar() {
             </div>
           ) : (
             <>
-              <Link to="/login" className="link">Sign in</Link>
+              <Link to="/login" className="link">
+                Sign in
+              </Link>
               <Link className="link" to="/register">
                 <button>Join</button>
               </Link>
