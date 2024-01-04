@@ -10,7 +10,7 @@ export const createGig = async (req, res, next) => {
     userId: req.userId,
     ...req.body,
   });
-  console.log(newGig);
+  // console.log(newGig);
   try {
     const savedGig = await newGig.save();
     res.status(201).json(savedGig);
@@ -31,7 +31,7 @@ export const deleteGig = async (req, res, next) => {
   }
 };
 export const getGig = async (req, res, next) => {
-  console.log("kog")
+  console.log("kog");
   try {
     const gig = await Gig.findById(req.params.id);
     if (!gig) next(createError(404, "Gig not found!"));
@@ -42,8 +42,6 @@ export const getGig = async (req, res, next) => {
 };
 export const getGigs = async (req, res, next) => {
   const q = req.query;
-  console.log("req", q,"req");
-  // console.log("req", req, "res", res);
   const filters = {
     ...(q.userId && { userId: q.userId }),
     ...(q.cat && { cat: q.cat }),
@@ -61,7 +59,6 @@ export const getGigs = async (req, res, next) => {
     //   el.userId==q.userId}).sort({ [q.sort]: -1 });
     const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(gigs);
-    console.log(filters,"filters",gigs,"getGigs", Gig,typeof(Gig));
   } catch (err) {
     next(err);
   }

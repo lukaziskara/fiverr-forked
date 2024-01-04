@@ -19,7 +19,7 @@ function MyGigs() {
         return res.data;
       }),
   });
-  console.log(data);
+  console.log(data, "dwadwac,znxa,n,mxaxm");
 
   const mutation = useMutation({
     mutationFn: (id) => {

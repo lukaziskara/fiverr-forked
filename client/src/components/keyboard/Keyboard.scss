@@ -11,10 +11,15 @@
     display: flex;
 
     .letter {
-      background-color: grey;
+      font-family: "Times New Roman", Times, serif;
+      background-color: rgb(216, 33, 33);
       font-size: 2em;
       padding: 0.3em;
       margin: 0.5em;
+      .modifier {
+        font-feature-settings: "liga" off;
+        color: #4caf50;
+      }
     }
   }
 }

@@ -13,6 +13,7 @@ function Gig() {
     queryKey: ["gig"],
     queryFn: () =>
       newRequest.get(`/gigs/single/${id}`).then((res) => {
+        console.log(res.data);
         return res.data;
       }),
   });
