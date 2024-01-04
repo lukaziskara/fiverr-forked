@@ -1,6 +1,6 @@
 import Word from "../models/word.model.js";
 
-export const createWords = async (req, res, next) => {
+export const createWord = async (req, res, next) => {
   // console.log("wordsState", req.body, "newWord");
 
   const newWord = new Word({

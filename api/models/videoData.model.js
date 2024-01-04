@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const VideoData = new Schema(
+const VideoDataSchema = new Schema(
   {
     userId: {
       type: String,
@@ -9,19 +9,23 @@ const VideoData = new Schema(
     },
     title: {
       type: String,
-    //   required: true,
+      //   required: true,
     },
     shortTitle: {
       type: String,
       // required: true,
     },
     desc: {
-      type: String,
+      type: Array,
       // required: true,
     },
     shortDesc: {
       type: String,
       // required: true,
+    },
+    images: {
+      type: [String],
+      // required: false,
     },
     features: {
       type: [String],
@@ -46,10 +50,6 @@ const VideoData = new Schema(
     // cover: {
     //   type: String,
     //   // required: true,
-    // },
-    // images: {
-    //   type: [String],
-    //   // required: false,
     // },
     // deliveryTime: {
     //   type: Number,

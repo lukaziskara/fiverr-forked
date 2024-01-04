@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./MyGigs.scss";
+import "./MyVideoDatas.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
-function MyGigs() {
+function MyVideoDatas() {
   const currentUser = getCurrentUser();
   console.log(currentUser);
   const queryClient = useQueryClient();
@@ -14,7 +14,7 @@ function MyGigs() {
     queryKey: ["myGigs"],
     refetchOnWindowFocus: false,
     queryFn: () =>
-      newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
+      newRequest.get(`/videodatas?userId=${currentUser._id}`).then((res) => {
         console.log(res.data);
         return res.data;
       }),
@@ -23,7 +23,7 @@ function MyGigs() {
 
   const mutation = useMutation({
     mutationFn: (id) => {
-      return newRequest.delete(`/gigs/${id}`);
+      return newRequest.delete(`/videodatas/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myGigs"]);
@@ -45,8 +45,8 @@ function MyGigs() {
           <div className="title">
             <h1>Gigs</h1>
             {currentUser.isSeller && (
-              <Link to="/add">
-                <button>Add New Gig</button>
+              <Link to="/addvideodata">
+                <button>ახალი ვიდეოს მონაცემების დამატება</button>
               </Link>
             )}
           </div>
@@ -64,7 +64,7 @@ function MyGigs() {
                   <img className="image" src={gig.cover} alt="" />
                 </td>
                 <td>
-                  <Link to={`/gig/${gig._id}`}>{gig.title}</Link>
+                  <Link to={`/videodata/${gig._id}`}>{gig.title}</Link>
                 </td>
                 <td>{gig.price}</td>
                 <td>{gig.sales}</td>
@@ -85,4 +85,4 @@ function MyGigs() {
   );
 }
 
-export default MyGigs;
+export default MyVideoDatas;

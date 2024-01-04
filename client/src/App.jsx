@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 import Gigs from "./pages/gigs/Gigs";
 import Gig from "./pages/gig/Gig";
+import Video from "./pages/video/Video";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Add from "./pages/add/Add";
@@ -19,6 +20,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Success from "./pages/success/Success";
 import Game from "./pages/Game";
 import AddVideoData from "./pages/addVideoData/AddVideoData";
+import MyVideoDatas from "./pages/myVideoDatas.copy/MyVideoDatas";
+import VideoData from "./pages/videoData/VideoData";
+import MyVideos from "./pages/myVideos/MyVideos";
 function App() {
   const queryClient = new QueryClient();
 
@@ -54,6 +58,14 @@ function App() {
           element: <MyGigs />,
         },
         {
+          path: "/myVideoDatas",
+          element: <MyVideoDatas />,
+        },
+        {
+          path: "/myVideos",
+          element: <MyVideos />,
+        },
+        {
           path: "/orders",
           element: <Orders />,
         },
@@ -72,6 +84,14 @@ function App() {
         {
           path: "/gig/:id",
           element: <Gig />,
+        },
+        {
+          path: "/videodata/:id",
+          element: <VideoData />,
+        },
+        {
+          path: "/video/:id",
+          element: <Video />,
         },
         {
           path: "/register",
@@ -98,7 +118,7 @@ function App() {
           element: <AddData />,
         },
         {
-          path: "/add-video-data",
+          path: "/addvideodata",
           element: <AddVideoData />,
         },
       ],

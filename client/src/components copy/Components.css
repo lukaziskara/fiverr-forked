@@ -1,0 +1,486 @@
+h1,
+h2 {
+  text-align: center;
+}
+img {
+  width: 100%;
+  max-width: 700px;
+  /* min-width: 370px; */
+  border: #000000 solid;
+  box-sizing: border-box;
+}
+p {
+  margin: auto;
+}
+.flex_center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.chapter {
+  /* margin: 1em 0.1em; */
+  padding: 0.7em 0.3em;
+  background-color: rgba(14, 40, 133, 0.839);
+  border-radius: 10px;
+  width: auto;
+}
+.topic-div {
+  color: #8f8f8f;
+  display: flex;
+  justify-content: space-between;
+}
+.topic_header {
+  font-size: 16px;
+}
+.result {
+  display: flex;
+  margin: auto;
+  margin-right: 20px;
+  color: rgb(117, 128, 117);
+}
+.qula,
+.cda {
+  color: white;
+  font-size: 8px;
+}
+button {
+  background-color: rgb(126, 133, 153);
+  border: none;
+  color: rgb(26, 26, 128);
+  border-radius: 3px;
+  padding: 0.7em;
+  margin: 0.3em;
+  cursor: pointer;
+}
+.clicked_button {
+  background-color: rgba(88, 30, 30, 0.475);
+}
+/* .dict_button */
+.opened_game {
+  background-color: #91764a;
+}
+
+.flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* **************************************თამაშის შესახებ******************************************* */
+
+.about {
+  border: 2px solid blue;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+.about_close {
+  font-family: "ALK Sanet", sans-serif;
+}
+.about_close,
+.about_header {
+  background-color: #005893;
+  width: fit-content;
+  margin: 0.3em auto 0.3em auto;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  cursor: pointer;
+}
+.about_part {
+  border-radius: 0.3em;
+  border: 2px solid green;
+  margin: 0.1em;
+}
+
+/* ////////////////////////////////მახასიათებლები//////////////////////////////////// */
+.settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.select_difficulty {
+  padding: 0.3em;
+  flex-wrap: wrap;
+}
+.examples {
+  background-color: rgb(9, 9, 171);
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  align-items: center;
+  height: 4em;
+  width: 100%;
+}
+.dItem {
+  text-align: center;
+  font-family: "ALK Sanet", sans-serif;
+  background-color: #b8b8b8;
+  margin: 0.3em 0.2em;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  max-width: 20%;
+  width: 20%;
+  min-width: 15%;
+}
+.cItem {
+  background-color: #82874d;
+  box-shadow: 0 0.2em;
+  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+}
+.middle_visible {
+  background-color: #91764a;
+}
+.second_invisible {
+  display: none;
+}
+.first_waiting,
+.first_invisible,
+.second_waiting {
+  /* background-color: #91764a; */
+  color: rgb(150, 121, 47);
+}
+.right_waiting {
+  background-color: green;
+  color: green;
+}
+.start_button {
+  background-color: rgb(97, 164, 72);
+  font-size: 1em;
+  border: #000000 solid;
+  border-radius: 0.3em;
+  color: #000000;
+}
+/* ///////////////////////////////ლექსიკონი/////////////////////////////////////// */
+.dictionary {
+  display: flex;
+}
+.t_words {
+  background-color: rgb(66, 67, 66);
+  width: 50%;
+  /* height: 1em; */
+}
+.b_words {
+  background-color: rgb(54, 55, 54);
+  width: 50%;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  /* height: 1em; */
+}
+.card {
+  background-color: #69706c;
+  border-radius: 0.3em;
+  width: fit-content;
+  padding: 0.3em;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3 ease-in-out;
+  height: fit-content;
+  font-family: "Arial GEO Bold", sans-serif;
+  box-shadow: 0 0.1em;
+  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+}
+.right_card {
+  background-color: rgb(4, 127, 4);
+  color: rgb(16, 16, 16);
+  /* width: fit-content; */
+}
+.third_waiting {
+  color: rgb(4, 127, 4);
+}
+.third_visible {
+  color: black;
+}
+.clicked_right {
+  background-color: #000000;
+  /* height: fit-content; */
+  /* transition: all 0.3 ease-in-out; */
+  /* color: white; */
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+/* @keyframes example {
+  from {
+    background-color: green;
+  }
+  to {
+    background-color: red;
+  }
+} */
+.left_card {
+  background-color: rgb(150, 121, 47);
+  /* height: fit-content; */
+}
+.left_visible {
+  color: rgb(0, 0, 0);
+}
+.clicked_left {
+  background-color: black;
+  /* color: rgb(255, 255, 255); */
+}
+.end_game {
+  /* display: flex; */
+}
+.won_words {
+  background-color: #5c605a;
+  padding: 0.3em;
+  box-sizing: border-box;
+}
+.won_word {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  min-width: fit-content;
+  padding: 0.3em;
+  margin: 0.3em 0;
+  background-color: rgb(4, 127, 4);
+}
+.expl {
+  background-color: rgb(38, 71, 71);
+}
+.hidden {
+  display: none;
+}
+.fixed-won-word {
+  background-color: gold;
+  padding: 1em;
+  border: black;
+  border-radius: 1em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 2em;
+  transform: translate(-50%, -50%);
+}
+.position-fixed-right {
+  background-color: red;
+  position: fixed;
+  top: 50%;
+  left: 75%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  /* background-color: green; */
+}
+/* ////////////////////////////////WordsAndMarks//////////////////////////////////////////////////////// */
+.build_here {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+}
+.display_none {
+  display: none;
+}
+.test {
+  background-color: #806722;
+  margin: 0.3em;
+}
+.words_and_marks {
+  display: flex;
+}
+.words_wout_marks {
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  background-color: rgb(79, 121, 60);
+  padding: 1em;
+}
+.word_wout_mark {
+  background-color: rgb(144, 180, 144);
+  padding: 0.7em;
+  margin: 0.3em;
+  border-radius: 0.3em;
+  box-shadow: 0 0.1em;
+  cursor: pointer;
+}
+.clicked_word {
+  background-color: rgb(88, 25, 25);
+}
+.marks {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: auto;
+}
+.mark {
+  background-color: #767975;
+  padding: 0.3em;
+  margin: 0.1em;
+  cursor: pointer;
+}
+.mark_among_words {
+  background-color: rgb(63, 63, 255);
+  padding: 0 0.5em 0.5em 0.5em;
+  border-radius: 0.3em;
+  margin: auto 0;
+}
+.clicked_mark {
+  background-color: aquamarine;
+}
+.span_element {
+  /* background-color: rgb(8, 0, 255); */
+  margin-top: 10px;
+  width: 10px;
+  height: 10px;
+  color: rgb(0, 4, 255);
+}
+
+/* ///////დაშლილი წინადადებები////////////////////////////////////// */
+.words_and_sentences {
+  background-color: grey;
+}
+.sentences {
+  background-color: rgb(30, 58, 30);
+  padding: 0.3em;
+}
+/* .sentence{
+
+} */
+.to_translate {
+  color: white;
+  padding: 0.3em;
+}
+.full_sentence_button {
+  background-color: green;
+}
+.full_sentence {
+  background-color: #3d5e7e;
+  padding: 0.3em;
+  margin: 0.3em;
+  border-radius: 0.3em;
+}
+.clicked_card_to_choose {
+  background-color: #69706c;
+  font-family: "BPG Glaho", sans-serif;
+  border-radius: 0.3em;
+  width: fit-content;
+  padding: 0.3em;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3 ease-in-out;
+  height: fit-content;
+}
+.card_to_choose {
+  background-color: #69706c;
+  font-family: "BPG Glaho", sans-serif;
+  border-radius: 0.3em;
+  width: fit-content;
+  padding: 0.3em;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3 ease-in-out;
+  height: fit-content;
+  box-shadow: 0 0.1em;
+  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+}
+.clicked_card_to_choose {
+  background-color: #030303;
+}
+.cursor_pointer {
+  cursor: pointer;
+}
+.to_fill_sentence {
+  background-color: #69706c;
+  margin: 0.3em;
+}
+/* .full_sentence{
+  background-color: rgb(26, 41, 73);
+} */
+.clicked_sentence {
+  /* background-color: #91764a; */
+}
+.words_for_sentence {
+  background-color: rgb(20, 112, 23);
+  display: flex;
+  flex-wrap: wrap;
+}
+.word_returned {
+  /* background-color: #547753; */
+  color: #547753;
+  padding: 0.3em;
+  margin: 0.3em;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+.word_for_sentence {
+  background-color: #547753;
+  color: #547753;
+  padding: 0.3em;
+  margin: 0.3em;
+  border-radius: 0.3em;
+  height: 1em;
+  cursor: pointer;
+}
+.clicked_word_for_sentence {
+  background-color: #72773b;
+}
+
+.back_invisible {
+  color: #72773b;
+  background-color: #72773b;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.back_visible {
+  background-color: green;
+  padding: 0.3em;
+  border-radius: 0.3em;
+  /* color: black; */
+}
+.word_card {
+  background-color: green;
+  padding: 0.7em;
+  margin: 0.5em;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+/* ********************************სურათის გამოცნობა************************************* */
+.sentence_card {
+  background-color: green;
+  padding: 0.3em;
+  margin: 0.3em;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+/* **********************************სურათის აღწერა*********************************** */
+.card_board {
+}
+/* *************************************შედეგები************************************ */
+
+.results_sentence {
+  background-color: rgba(52, 70, 136, 0.839);
+  padding: 0.5em;
+}
+.results_translation {
+  background-color: rgb(145, 145, 145);
+  margin: 0.3em;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.results_native {
+  background-color: rgb(0, 78, 72);
+  color: rgb(179, 178, 178);
+  margin: 0.3em;
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+
+@media only screen and (min-width: 768px) {
+  .chapter {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}

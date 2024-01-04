@@ -1,10 +1,10 @@
 import express from "express";
 import { verifyToken } from "../middleware/jwt.js";
-import { createWords } from "../controllers/words.controller.js";
+import { createWord } from "../controllers/word.controller.js";
 
 const router = express.Router();
 
-router.post("/", verifyToken, createWords);
+router.post("/", verifyToken, createWord);
 
 console.log("test");
 // router.delete("/:id", verifyToken, deleteSentence);

@@ -12,7 +12,6 @@ function MyGigs() {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
-    refetchOnWindowFocus: false,
     queryFn: () =>
       newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
         console.log(res.data);

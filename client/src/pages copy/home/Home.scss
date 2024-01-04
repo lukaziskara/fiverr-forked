@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(136, 134, 134);
+  /* display: flex; */
+  justify-content: center;
+  font-size: 1em;
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .page-button {
+      background-color: green;
+      color: black;
+      padding: 1em;
+      margin: 1em;
+      display: block;
+      border-radius: 0.3em;
+      text-decoration: none;
+    }
+  }
+}
