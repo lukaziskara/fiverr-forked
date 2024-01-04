@@ -5,7 +5,10 @@ import upload from "../../utils/upload";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
-
+// const Diacritical = "&#x0304;";
+// const Diacritical =
+//   "<div><span>nested &#x0304;</span> <span>stuff</span></div>";
+console.log("a&#x0304;");
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
@@ -67,11 +70,16 @@ const Add = () => {
     // navigate("/mygigs");
   };
 
+  const Diacritial = "a\u0304";
+  console.log(`diacretial არის '${Diacritial}'`);
   return (
     <div className="add">
       <div className="container">
         <h1>Add New Gig</h1>
         <div className="sections">
+          <p>
+            diacretial არის &#0304; {Diacritial} '{Diacritial}' ⁀უ ტˠ
+          </p>
           <div className="info">
             <label htmlFor="">Title</label>
             <input

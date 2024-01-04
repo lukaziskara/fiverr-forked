@@ -18,6 +18,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
 import Game from "./pages/Game";
+import Sentences from "./pages/sentences/Sentences";
+import MySentences from "./pages/mySentences/MySentences";
 function App() {
   const queryClient = new QueryClient();
 
@@ -49,8 +51,16 @@ function App() {
           element: <Gigs />,
         },
         {
+          path: "/sentences",
+          element: <Sentences />,
+        },
+        {
           path: "/myGigs",
           element: <MyGigs />,
+        },
+        {
+          path: "/mySentences",
+          element: <MySentences />,
         },
         {
           path: "/orders",

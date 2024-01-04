@@ -12,13 +12,14 @@ function MyGigs() {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
+    refetchOnWindowFocus: false,
     queryFn: () =>
       newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
         console.log(res.data);
         return res.data;
       }),
   });
-  console.log(data);
+  console.log(data, "dwadwac,znxa,n,mxaxm");
 
   const mutation = useMutation({
     mutationFn: (id) => {

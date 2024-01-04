@@ -3,34 +3,34 @@ const { Schema } = mongoose;
 
 const SentenceSchema = new Schema(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
-    originalSentence: {
-      type: String,
-      required: true,
-    },
-    translation: {
-      type: String,
-      required: true,
-    },
-    desc: {
+    // userId: {
+    //   type: String,
+    //   required: true,
+    // },
+    sentence: {
       type: String,
       // required: true,
     },
-    // totalStars: {
-    //   type: Number,
-    //   default: 0,
-    // },
-    // starNumber: {
-    //   type: Number,
-    //   default: 0,
-    // },
-    // cat: {
-    //   type: String,
-    //   // required: true,
-    // },
+    translation: {
+      type: String,
+      // required: true,
+    },
+    words: {
+      type: String,
+      // required: true,
+    },
+    tWords: {
+      type: String,
+      // default: 0,
+    },
+    picture: {
+      type: String,
+      // default: 0,
+    },
+    theme: {
+      type: String,
+      // required: true,
+    },
     // price: {
     //   type: Number,
     //   // required: true,

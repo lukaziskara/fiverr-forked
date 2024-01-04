@@ -62,7 +62,7 @@ export const getSentences = async (req, res, next) => {
   try {
     const sentences = await Sentence.find(filters).sort({ [q.sort]: -1 });
     res.status(200).send(sentences);
-    console.log("getGigs", sentences);
+    console.log("getSentences", sentences, "getSentences");
   } catch (err) {
     next(err);
   }

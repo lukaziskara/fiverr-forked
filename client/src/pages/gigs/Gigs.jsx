@@ -15,13 +15,16 @@ function Gigs() {
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
+    refetchOnWindowFocus: false,
     queryFn: () =>
       newRequest
         .get(
           // `/gigs`
-          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          `/gigs`
+          // ${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}    ფილტრი
         )
         .then((res) => {
+          console.log(res.data);
           return res.data;
         }),
   });
@@ -37,6 +40,7 @@ function Gigs() {
 
   const apply = () => {
     refetch();
+    console.log(data);
   };
 
   return (
