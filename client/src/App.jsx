@@ -18,8 +18,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
 import Game from "./pages/Game";
+// <<<<<<< HEAD
 import Sentences from "./pages/sentences/Sentences";
 import MySentences from "./pages/mySentences/MySentences";
+// =======
+import AddVideoData from "./pages/addVideoData/AddVideoData";
+// >>>>>>> d245af658340a54f2a7785b6dfa46820c67c231d
 function App() {
   const queryClient = new QueryClient();
 
@@ -105,6 +109,10 @@ function App() {
         {
           path: "/add-data",
           element: <AddData />,
+        },
+        {
+          path: "/add-video-data",
+          element: <AddVideoData />,
         },
       ],
     },
