@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const wordSchema = new Schema(
+const dictionarySchema = new Schema(
   {
     // userId: {
     //   type: String,
@@ -25,4 +25,4 @@ const wordSchema = new Schema(
   }
 );
 
-export default mongoose.model("Word", wordSchema);
+export default mongoose.model("Dictionary", dictionarySchema);

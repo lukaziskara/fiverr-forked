@@ -72,7 +72,7 @@ export const getVideoData = async (req, res, next) => {
   console.log("kog");
   try {
     const videoData = await VideoData.findById(req.params.id);
-    console.log("kog",videoData);
+    // console.log("kog",videoData);
     if (!videoData) next(createError(404, "VideoData not found!"));
     res.status(200).send(videoData);
   } catch (err) {
@@ -81,7 +81,7 @@ export const getVideoData = async (req, res, next) => {
 };
 export const getVideoDatas = async (req, res, next) => {
   const q = req.query;
-  console.log("req", q, "req");
+  console.log("req", q, "getvideoDatas");
   // console.log("req", req, "res", res);
   const filters = {
     ...(q.userId && { userId: q.userId }),

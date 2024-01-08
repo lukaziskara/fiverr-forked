@@ -41,6 +41,10 @@ export const getGig = async (req, res, next) => {
   }
 };
 export const getGigs = async (req, res, next) => {
+  // const q= {title: 'one'};
+  // console.log("dafa",q.userId)
+  // const filters = {
+  //   ...(q.title && { title: q.title }),
   const q = req.query;
   const filters = {
     ...(q.userId && { userId: q.userId }),

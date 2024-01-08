@@ -54,6 +54,14 @@ function App() {
           element: <Home />,
         },
         {
+          path: "/myVideoDatas",
+          element: <MyVideoDatas />,
+        },
+        {
+          path: "/myVideos",
+          element: <MyVideos />,
+        },
+        {
           path: "/gigs",
           element: <Gigs />,
         },
