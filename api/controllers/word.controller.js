@@ -19,28 +19,38 @@ export const createWord = async (req, res, next) => {
   //   next(err);
   // }
 };
-export const getWords = async (req, res, next) => {
-  console.log(req.query.chosenWords, "getWords req");
-  const q = {wTranslation: 'არარსებობა'};
 
+// export const getWords = async (req, res, next) => {
+//   console.log(req.query.chosenWords, "getWords req");
+//   const q = {"anopheles":undefined};
+//   const filters = {
+//     ...(q && q["anopheles"]),
+//     // ...(q._id && { _id: q._id }),
+//   };
+//   // console.log(filters)
+//   try {
+//     const videoDatas = await Word.find(q["anopheles"]).sort({ [q.sort]: -1 })
+
+//     res.status(200).send(videoDatas);
+//     console.log(videoDatas, "videodatas","word");
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+export const getWords = async (req, res, next) => {
+  // console.log(req.query.chosenWords, "getWords req");
+  const q = {theWord: req.query.chosenWords};
   const filters = {
-    ...(q.wTranslation && { wTranslation: q.wTranslation }),
+    ...(q.theWord && { theWord: q.theWord }),
+    // ...(q._id && { _id: q._id }),
   };
-  console.log(filters)
+  // console.log(filters)
   try {
-    // const gigs = await Gig.find((el)=>{
-    //   console.log(el,"ELEMENT")
-    //   el.userId==q.userId}).sort({ [q.sort]: -1 });
     const videoDatas = await Word.find(filters).sort({ [q.sort]: -1 })
-    //   const videoDatas = await Word.find({
-    //   ...(theWord && { theWord: theWord }),
-    // });
-    // for(let i=0;i<videoDatas.length;i++){
-    //   delete videoDatas[i].shortDesc;
-    //   console.log("works",videoDatas[i].shortDesc)
-    // }
+
     res.status(200).send(videoDatas);
-    // console.log(videoDatas, "videodatas");
+    // console.log(videoDatas, "videodatas","word");
   } catch (err) {
     next(err);
   }

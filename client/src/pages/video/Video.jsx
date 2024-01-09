@@ -347,10 +347,11 @@ export default function Video(props) {
       console.log("started", isStarted, chosenWords);
       
       // newRequest.get(`/words/get?chosenWords=${chosenWords}`)
-      newRequest.get(`/words/get`,{
+      newRequest.get(`/words`,{
           params: {
             chosenWords
-          }}).then((res) => {
+          }})
+          .then((res) => {
             console.log("დაბრუნდა",res)
             // return { ...res.data };
           });

@@ -3,18 +3,18 @@ const { Schema } = mongoose;
 
 const wordSchema = new Schema(
   {
-    // userId: {
-    //   type: String,
-    //   // required: true,
-    // },
-    // word: {
-    //   type: String,
-    //   required: true,
-    // },
-    // translation: {
-    //   type: String,
-    //   required: true,
-    // },
+    userId: {
+      type: String,
+      // required: true,
+    },
+    theWord: {
+      type: String,
+      required: true,
+    },
+    TRANSLATION: {
+      type: String,
+      required: true,
+    },
     // desc: {
     //   type: String,
     //   // required: true,
