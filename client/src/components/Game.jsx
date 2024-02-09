@@ -1,14 +1,14 @@
 import { useMemo, useRef, useState } from "react";
 import "../components/Components.css";
-import GamePanel from "../components copy/GamePanel";
-import Dictionary from "../components copy/Dictionary";
+import GamePanel from "../components/GamePanel";
+import Dictionary from "../components/Dictionary";
 // import CreateSentences from "../components/CreateSentences";
 // import WordsAndMarks from "../components/WordsAndMarks";
 // import PartOfSpeech from "../components/PartsOfSpeech";
 
-import Settings from "../components copy/GameSettings";
-import Results from "../components copy/Results";
-import About from "../components copy/About";
+import Settings from "../components/GameSettings";
+import Results from "../components/Results";
+import About from "../components/About";
 import about from "../about.json";
 // import GuessPicture from "../components/GuessPicture";
 // import TellPicture from "../components/TellPicture";
@@ -33,13 +33,18 @@ function Game(props) {
     secondPartState: "second_visible",
     thirdPartState: "third_visible",
   });
+  const [gameType, setGameType] = useState("TRANSLATION");
 
   // შემთხვევითად ამოირჩევა წინადადებები ყოველი თავიდან და დაიშლება ობიექტებად, რომლებიც wordsForCards მასივში მიმდევრობით ჩალაგდება
   const iSentence = useRef();
   const marksAmount = useRef(0);
   const wordsFromLexicon = props.wordsForGame;
   // console.log(wordsFromLexicon);
-
+  const wordsForDictionary = useMemo(() =>
+    lexicon.filter((wordData) =>
+      wordData.theWord.toString().includes(searchWord)
+    )
+  );
   // const {sentencesData,wordsFromSentences,wordsfromLexicon} = useMemo(()=> getData(4,1),[])
   console.log(wordsFromLexicon, props);
   // ძველი ნაწილი
@@ -118,6 +123,7 @@ function Game(props) {
               setDictionarySettings={setDictionarySettings}
               setPoint={setPoint}
               setTries={setTries}
+              setGameType={setGameType}
               setPartOfGame={setPartOfGame}
             />
           </div>
@@ -135,6 +141,7 @@ function Game(props) {
               setPartOfGame={setPartOfGame}
               isVisibleFront={isVisibleFront}
               isVisibleBack={isVisibleBack}
+              gameType={gameType}
             />
           </div>
         ) : partOfGame === 2 ? (

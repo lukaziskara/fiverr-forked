@@ -38,6 +38,8 @@ const gameDifficulties = [
   },
 ];
 
+const gameTypes = ["TRANSLATION", "MEANINGS", "SYNONYMS", "ANTONYMS"];
+
 export default function Settings(props) {
   const {
     newGame,
@@ -47,6 +49,7 @@ export default function Settings(props) {
     setPartOfGame,
     // dictionarySettings,
     setDictionarySettings,
+    setGameType,
   } = props;
   const [chosenDifficulty, setChosenDifficulty] = useState(1);
   const [firstPartState, setFirstPartState] = useState(
@@ -70,6 +73,14 @@ export default function Settings(props) {
 
   return (
     <div className="settings">
+      <h3>აირჩიე ეტაპი</h3>
+      <div className="select_type">
+        {gameTypes.map((type, i) => (
+          <div className="" onClick={() => setGameType(type)}>
+            {type}
+          </div>
+        ))}
+      </div>
       <h3>აირჩიე სირთულე</h3>
       <div className="flex_center select_difficulty">
         {gameDifficulties.map((gameDifficulty, index) => (

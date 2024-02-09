@@ -12,6 +12,7 @@ export default function Dictionary(props) {
     secondPartState,
     thirdPartState,
     cardsData,
+    gameType,
   } = props;
   console.log(props);
   const leftBack = useRef();
@@ -82,10 +83,13 @@ export default function Dictionary(props) {
                   : "card left_card"
               }
               onClick={() => {
+                console.log(cardData[gameType]);
                 clickHandler(cardData, index, "left");
               }}
             >
-              <div className={firstPartState}>{cardData.wTranslation}</div>
+              <div className={firstPartState}>
+                {cardData[gameType].toString(", ")}
+              </div>
               <div className={secondPartState}>{cardData.theWord}</div>
             </div>
           ))}

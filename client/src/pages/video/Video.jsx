@@ -236,6 +236,7 @@ export default function Video(props) {
   const [click, setClick] = useState(0);
   const [newGame, setNewGame] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [gameData, setGameData] = useState();
 
   const inputRef = useRef();
 
@@ -345,17 +346,19 @@ export default function Video(props) {
         .filter((word) => word.selected)
         .map((word) => word.theWord);
       console.log("started", isStarted, chosenWords);
-      
-      // newRequest.get(`/words/get?chosenWords=${chosenWords}`)
-      newRequest.get(`/words`,{
-          params: {
-            chosenWords
-          }})
-          .then((res) => {
-            console.log("დაბრუნდა",res)
-            // return { ...res.data };
-          });
 
+      // newRequest.get(`/words/get?chosenWords=${chosenWords}`)
+      newRequest
+        .get(`/words`, {
+          params: {
+            chosenWords,
+          },
+        })
+        .then((res) => {
+          console.log("დაბრუნდა", res);
+          setGameData(res.data);
+          // return { ...res.data };
+        });
 
       // newRequest.post("/words", chosenWords);
       // .then((res) => {
@@ -363,6 +366,7 @@ export default function Video(props) {
       // });
     }
   }, [isStarted]);
+  console.log("gameData", gameData, isStarted);
   return (
     <div className="video">
       {isLoading && !isLoaded ? (
@@ -416,7 +420,8 @@ export default function Video(props) {
                 </button>
               </div>
             </div>
-            {/* {isStarted ? <Game wordsForGame={wordsForGame} /> : null} */}
+            {/* {gameData[0].SYNONYMS.toString(" ")} */}
+            {isStarted ? <Game wordsForGame={gameData} /> : null}
           </div>
           <div className="video-palyer">
             {/* <iframe
