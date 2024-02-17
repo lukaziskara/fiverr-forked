@@ -75,6 +75,7 @@ function MyVideoDatas() {
             <tr>
               <th>Image</th>
               <th>Title</th>
+              <th>Language</th>
               <th>Price</th>
               <th>Sales</th>
               <th>Action</th>
@@ -87,6 +88,7 @@ function MyVideoDatas() {
                 <td>
                   <Link to={`/video/${gig._id}`}>{gig.title}</Link>
                 </td>
+                <td>{gig.language}</td>
                 <td>{gig.price}</td>
                 <td>{gig.sales}</td>
                 <td>

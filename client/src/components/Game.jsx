@@ -39,12 +39,12 @@ function Game(props) {
   const iSentence = useRef();
   const marksAmount = useRef(0);
   const wordsFromLexicon = props.wordsForGame;
-  // console.log(wordsFromLexicon);
-  const wordsForDictionary = useMemo(() =>
-    lexicon.filter((wordData) =>
-      wordData.theWord.toString().includes(searchWord)
-    )
-  );
+  console.log(wordsFromLexicon,props);
+  // const wordsForDictionary = useMemo(() =>
+  //   lexicon.filter((wordData) =>
+  //     wordData.theWord.toString().includes(searchWord)
+  //   )
+  // );
   // const {sentencesData,wordsFromSentences,wordsfromLexicon} = useMemo(()=> getData(4,1),[])
   console.log(wordsFromLexicon, props);
   // ძველი ნაწილი

@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Game from "../../components/Game";
+import TheWord from "../../components/theWord/TheWord";
 
 // import lexicon from "../../data/scriptsData/lexicon.json";
 // import transcripts from "../../data/scriptsData/videoTranscripts.json";
@@ -310,7 +311,7 @@ export default function Video(props) {
     // console.log(startTime, endTime);
     if (!isLoading && isLoaded) {
       const lines = data.desc;
-      console.log(lines, startTime, endTime);
+      // console.log(lines, startTime, endTime);
       const choicedLines = lines.filter(
         (line) => startTime <= line.time && line.time < endTime
       );
@@ -338,7 +339,8 @@ export default function Video(props) {
       return [];
     }
   }, [startTime, endTime]);
-  console.log(wordsToChoose.length, endTime, isLoading, isLoaded);
+  console.log(newGame, isStarted);
+  // console.log(wordsToChoose.length, endTime, isLoading, isLoaded);
   useEffect(() => {
     console.log("useEffect run");
     if (isStarted) {
@@ -365,7 +367,7 @@ export default function Video(props) {
       //   return { ...res.data };
       // });
     }
-  }, [isStarted]);
+  }, [newGame]);
   console.log("gameData", gameData, isStarted);
   return (
     <div className="video">
@@ -406,6 +408,7 @@ export default function Video(props) {
                     }}
                   >
                     <div className="">{word.theWord}</div>
+                    {/* <div className=""><TheWord theWord={word.theWord} /></div> */}
                   </div>
                 ))}
               </div>

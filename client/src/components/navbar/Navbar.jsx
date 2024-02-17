@@ -59,6 +59,9 @@ function Navbar() {
                       <Link className="link" to="/mygigs">
                         Gigs
                       </Link>
+                      <Link className="link" to="/myvideos">
+                        Videos
+                      </Link>
                       <Link className="link" to="/add">
                         Add New Gig
                       </Link>
@@ -88,7 +91,7 @@ function Navbar() {
           )}
         </div>
       </div>
-      {(active || pathname !== "/") && (
+      {/* {(active || pathname !== "/") && (
         <>
           <hr />
           <div className="menu">
@@ -122,7 +125,7 @@ function Navbar() {
           </div>
           <hr />
         </>
-      )}
+      )} */}
     </div>
   );
 }

@@ -13,11 +13,12 @@ const AddVideoData = () => {
   const [singleFile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('orange');
 
   const [state, dispatch] = useReducer(videoDataReducer, INITIAL_STATE);
 
   const handleChange = (e) => {
-    // console.log(e.target);
+    console.log(e.target.value);
     dispatch({
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
@@ -44,6 +45,7 @@ const AddVideoData = () => {
 
   const mutation = useMutation({
     mutationFn: (gig) => {
+      // console.log(gig)
       return newRequest.post("/videodatas", gig);
     },
     onSuccess: () => {
@@ -88,6 +90,17 @@ const AddVideoData = () => {
               placeholder="e.g. One-page web design"
               onChange={handleChange}
             />
+            <label htmlFor="">ენა</label>
+            <select
+              name="language"
+              // value={selectedLanguage} // ...force the select's value to match the state variable...
+              onChange={handleChange}
+              // onChange={(e) => setSelectedFruit(e.target.value)}
+            >
+              <option value="english">English</option>
+              <option value="español">Español</option>
+              <option value="თუშური">თუშური</option>
+            </select>
             <label htmlFor="">სუბტიტრები</label>
             <textarea
               name="desc"

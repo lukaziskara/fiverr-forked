@@ -70,7 +70,7 @@ const Add = () => {
     // navigate("/mygigs");
   };
 
-  const Diacritial = "a\u0304";
+  const Diacritial = "ა\u0304";
   console.log(`diacretial არის '${Diacritial}'`);
   return (
     <div className="add">

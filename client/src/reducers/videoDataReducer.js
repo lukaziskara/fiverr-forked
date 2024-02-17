@@ -6,6 +6,7 @@ export const INITIAL_STATE = {
   shortDesc: "",
   images: [],
   features: [],
+  language: "",
   // cat: "",
   // cover: "",
   // deliveryTime: 0,

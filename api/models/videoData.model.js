@@ -11,6 +11,10 @@ const VideoDataSchema = new Schema(
       type: String,
       //   required: true,
     },
+    language: {
+      type: String,
+      //   required: true,
+    },
     shortTitle: {
       type: String,
       // required: true,

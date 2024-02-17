@@ -27,6 +27,7 @@ import AddVideoData from "./pages/addVideoData/AddVideoData";
 import MyVideoDatas from "./pages/myVideoDatas.copy/MyVideoDatas";
 import VideoData from "./pages/videoData/VideoData";
 import MyVideos from "./pages/myVideos/MyVideos";
+import GameTushetians from "./pages/gameTushetians/gameTushetians";
 function App() {
   const queryClient = new QueryClient();
 
@@ -130,6 +131,10 @@ function App() {
         {
           path: "/game",
           element: <Game />,
+        },
+        {
+          path: "/gametushetians",
+          element: <GameTushetians />,
         },
         {
           path: "/add-data",

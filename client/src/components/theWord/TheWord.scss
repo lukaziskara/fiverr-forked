@@ -1,0 +1,12 @@
+.text {
+  display: flex;
+  .character-container {
+    background-color: green;
+    .macron {
+    //   font-feature-settings: "liga" off; /* Disable ligatures */
+    }
+  }
+}
+.macron {
+  font-feature-settings: "liga" off; /* Disable ligatures */
+}

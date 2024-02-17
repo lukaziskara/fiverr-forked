@@ -105,7 +105,7 @@ export default function KeyboardWrapper(props) {
 
   return (
     <div className="keyboard">
-      ა a{testLetter}
+      ა ა{testLetter}ხალი
       <div className="letters">
         {letters.map((letter, index) => (
           <div
