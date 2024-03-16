@@ -1,3 +1,7 @@
+.flex{
+  display: flex;
+}
+
 .gigs {
   width: 100%;
   display: flex;
@@ -16,7 +20,7 @@
     // justify-content: space-between;
     padding: 20px 10px 20px 10px;
     box-sizing: border-box;
-
+    
     .breadcrumbs {
       font-weight: 300;
       text-transform: uppercase;

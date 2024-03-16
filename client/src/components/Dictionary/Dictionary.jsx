@@ -1,10 +1,9 @@
 import { useState, useRef, useMemo } from "react";
-import LeftCard from "./LeftCard";
-import RightCard from "./RightCard";
+import LeftCard from "../LeftCard";
+import RightCard from "../RightCard";
 import React from "react";
 
 export default function Dictionary(props) {
-  // console.log(props);
   const {
     newGame,
     setPartOfGame,
@@ -14,17 +13,11 @@ export default function Dictionary(props) {
     cardsData,
   } = props;
   const wonWords = useRef([]);
-  //[point,setPoint,tries,setTries,cardsData]
-  // console.log("შედეგები",props.point, props.tries,props)
   const leftBack = useRef();
   const rightBack = useRef();
   const frontTextId = useRef();
   const theWordId = useRef();
-  // const sentences = props.sentences;
-  // const cardsData = props.cardsData;
-  // const startingWords = useRef(cardsData.length);
-  // const wonWords = useRef([1,2,3]);
-  // console.log("cardsData", typeof cardsData, cardsData, cardsData.length);
+
   const [clickedRightCardId, setClickedRightCardId] = useState();
   const [clickedLeftCardId, setClickedLeftCardId] = useState();
   const [visibleBackIndex, setVisibleBackIndex] = useState();
@@ -34,9 +27,9 @@ export default function Dictionary(props) {
   const shuffledDataForLeft = useMemo(() => {
     return cardsData
       .map((cardData) => {
-        console.log(cardData);
+        // console.log(cardData);
         return {
-          wTranslation: cardData.wTranslation,
+          TRANSLATION: cardData.TRANSLATION,
           theWord: cardData.theWord,
           id: cardData.index,
         };
@@ -44,18 +37,17 @@ export default function Dictionary(props) {
       .sort(() => 0.5 - Math.random());
   }, []);
   const shuffledDataForRight = useMemo(() => {
-    // console.log("dasfsnjkbnjjhbjhbjhbjh");
     return cardsData
       .map((cardData) => {
         return {
-          wTranslation: cardData.wTranslation,
+          TRANSLATION: cardData.TRANSLATION,
           theWord: cardData.theWord,
           id: cardData.index,
         };
       })
       .sort(() => 0.5 - Math.random());
   }, []);
-  console.log(shuffledDataForLeft, shuffledDataForRight);
+  // console.log(shuffledDataForLeft, shuffledDataForRight);
   // console.log(wonWords)
   return (
     <>
@@ -99,11 +91,11 @@ export default function Dictionary(props) {
                   setClickedLeftCardId(cardData.id);
                 }}
               >
-                <div className={firstPartState}>{cardData.wTranslation}</div>
+                <div className={firstPartState}>{cardData.TRANSLATION}</div>
                 <div className={secondPartState}>{cardData.theWord}</div>
               </div>
             )
-            // <LeftCard back={cardData.theWord} front={cardData.wTranslation} key={index} />
+            // <LeftCard back={cardData.theWord} front={cardData.TRANSLATION} key={index} />
           )}
         </div>
         <div className="b_words flex_wrap">
@@ -153,7 +145,7 @@ export default function Dictionary(props) {
         <div className="won_words">
           {wonWords.current.map((wonWord, index) => (
             <div className="won_word">
-              <div>{wonWord.wTranslation}</div> - <div>{wonWord.theWord}</div>
+              <div>{wonWord.TRANSLATION}</div> - <div>{wonWord.theWord}</div>
             </div>
           ))}
         </div>

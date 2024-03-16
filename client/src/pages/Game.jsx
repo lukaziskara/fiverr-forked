@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import "../components/Components.css";
-import Dictionary from "../components/Dictionary";
-import CreateSentences from "../components/CreateSentences";
+import Dictionary from "../components/Dictionary/Dictionary";
+import CreateSentences from "../components/CreateSentences/CreateSentences";
 import WordsAndMarks from "../components/WordsAndMarks";
 import PartOfSpeech from "../components/PartsOfSpeech";
 

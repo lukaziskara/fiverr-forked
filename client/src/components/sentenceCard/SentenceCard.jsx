@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const SentenceCard = ({ item }) => {
-  console.log(item);
+  // console.log(item);
   // const { isLoading, error, data } = useQuery({
   //   queryKey: [item.userId],
   //   queryFn: () =>
@@ -16,13 +16,17 @@ const SentenceCard = ({ item }) => {
   const image1 = "game_photos/სიტუაციები/";
   const image2 = `game_photos/${item.picture}1.jpg`;
   return (
-    <Link to={`/sentence/${item._id}`} className="link">
-      <div className="sentenceCard">
-        <img src={image2} alt="" />
+    <div className="sentenceCard">
+      {/* <img src={image2} alt="" /> */}
+      <div className="data">
         <div className="">{item.sentence}</div>
+        {/* <span className="test">aაა̄</span> */}
         <div className="">{item.translation}</div>
       </div>
-    </Link>
+      <Link to={`/sentence/${item._id}`} className="link">
+        edit
+      </Link>
+    </div>
     // <Link to={`/gig/${item._id}`} className="link">
     //   <div className="gigCard">
     //     <img src={item.cover} alt="" />

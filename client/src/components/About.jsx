@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function About(props) {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-  console.log(props.desc, "dwadwejkn");
+  // console.log(props.desc, "dwadwejkn");
   return (
     <div className="about">
       {isAboutOpen ? (

@@ -1,6 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "./Sentences.scss";
 import SentenceCard from "../../components/sentenceCard/SentenceCard";
+import GameSentences from "../../components/gameSentences/GameSentences";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useLocation } from "react-router-dom";
@@ -8,13 +15,33 @@ import { useLocation } from "react-router-dom";
 function Sentences() {
   // const [sort, setSort] = useState("sales");
   // const [open, setOpen] = useState(false);
-  // const minRef = useRef();
+  const [gameData, setGameData] = useState({});
+  const [newGame, setNewGame] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
+  const [gameDataCollected, setGameDataCollected] = useState(false);
+
+  const amountRef = useRef();
+  const withPicsRef = useRef();
+  const methodRef = useRef();
+  const themesRef = useRef();
+  const themes = useMemo(() => {
+    return [
+      { name: "ცხოველები", isChecked: "true" },
+      { name: "სხეულის ნაწილები", isChecked: "true" },
+      { name: "სხვადასხვა", isChecked: "true" },
+      { name: "ცხოველები", isChecked: "true" },
+    ];
+  });
+
   // const maxRef = useRef();
+  // ფუნქცია, რომელიც მიიღებს წინადადებების მონაცემების მასივს და
+  // დააბრუნებს იქიდან შემთხვევითად არჩეულ მითითებული რაოდენობის ელემენტებს
 
   // const { search } = useLocation();
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["sentences"],
+    refetchOnWindowFocus: false,
     queryFn: () =>
       newRequest
         .get(
@@ -25,75 +52,161 @@ function Sentences() {
           return res.data;
         }),
   });
-  // console.log(data);
+  // console.log("some render");
+  function handleSubmit() {
+    // console.log(data, "submit",isStarted,newGame);
+    if (!isStarted) {
+      setNewGame(newGame + 1);
+    } else {
+      setGameDataCollected(false);
+    }
+    setIsStarted(!isStarted);
+    // console.log(data, "submit",isStarted,newGame);
+  }
 
-  // const reSort = (type) => {
-  //   setSort(type);
-  //   setOpen(false);
-  // };
+  function pickSentences(data, NoS, NoP, method, themes) {
+    const sentencesWithPicture = data.filter((sentence) => sentence.picture);
+    const sentencesWithOutPicture = data.filter(
+      (sentence) => !sentence.picture
+    );
+    // console.log(NoP, sentencesWithPicture, sentencesWithOutPicture);
+    // console.log(data, NoS, method);
+    const chosenSentences = [];
+    // სურათიანი წინადადებების არჩევა
+    for (let i = 0; i < NoP; i++) {
+      chosenSentences.push(
+        sentencesWithPicture.splice(
+          Math.floor(Math.random() * sentencesWithPicture.length),
+          1
+        )[0]
+      );
+    }
+    // სურათის გარეშე წინადადებების არჩევა
+    for (let i = 0; i < NoS - NoP; i++) {
+      chosenSentences.push(
+        sentencesWithOutPicture.splice(
+          Math.floor(Math.random() * sentencesWithOutPicture.length),
+          1
+        )[0]
+      );
+    }
+    return chosenSentences;
+  }
 
-  // useEffect(() => {
-  //   refetch();
-  // }, [sort]);
+  function splitText(data) {
+    const words = data.map((el) =>
+      el.sentence
+        .toLowerCase()
+        .replace(",", "")
+        .replace(".", "")
+        .replace('"', "")
+        .replace('"', "")
+        .replace("(", "")
+        .replace(")", "")
+        .replace(":", "")
+        .replace("?", "")
+        .split(" ")
+    );
+    const uniqueWords = words
+      .flat()
+      .filter((value, index, self) => self.indexOf(value) === index);
+    return uniqueWords;
+  }
+  useEffect(() => {
+    if (isStarted) {
+      const chosenSentences = pickSentences(
+        data,
+        amountRef.current.value,
+        withPicsRef.current.value,
+        methodRef.current.value
+      );
+      const wordsToTranslate = splitText(chosenSentences);
+      const lang = "ba";
+      newRequest
+        .get(`/words`, {
+          params: {
+            wordsToTranslate,
+            lang,
+          },
+        })
+        .then((res) => {
+          // console.log("დაბრუნდა", res);
+          setGameData({
+            wordsFromLexicon: res.data,
+            chosenSentences: chosenSentences,
+            wordsFromSentences: wordsToTranslate,
+          });
+          setGameDataCollected(true);
+        });
+    }
+  }, [newGame]);
 
-  // const apply = () => {
-  //   refetch();
-  // };
-
+  // console.log("gameData", gameData, isStarted);
   return (
-    <div className=""></div>
-    // <div className="gigs">
-    //   <div className="container">
-    //     <div className="cards">
-    //       {isLoading
-    //         ? "loading"
-    //         : error
-    //         ? "Something went wrong!"
-    //         : data.map((gig) => <SentenceCard key={gig._id} item={gig} />)}
-    //     </div>
-    // {/* {data.map((gig) => (
-    //   <SentenceCard key={gig._id} item={gig} />
-    // ))} */}
-
-    //     {/* <span className="breadcrumbs">Liverr Graphics & Design</span>
-    //     <h1>AI Artists</h1>
-    //     <p>
-    //       Explore the boundaries of art and technology with Liverr's AI artists
-    //     </p>
-    //     <div className="menu">
-    //       <div className="left">
-    //         <span>Budget</span>
-    //         <input ref={minRef} type="number" placeholder="min" />
-    //         <input ref={maxRef} type="number" placeholder="max" />
-    //         <button onClick={apply}>Apply</button>
-    //       </div>
-    //       <div className="right">
-    //         <span className="sortBy">Sort by</span>
-    //         <span className="sortType">
-    //           {sort === "sales" ? "Best Selling" : "Newest"}
-    //         </span>
-    //         <img src="./img/down.png" alt="" onClick={() => setOpen(!open)} />
-    //         {open && (
-    //           <div className="rightMenu">
-    //             {sort === "sales" ? (
-    //               <span onClick={() => reSort("createdAt")}>Newest</span>
-    //             ) : (
-    //               <span onClick={() => reSort("sales")}>Best Selling</span>
-    //             )}
-    //             <span onClick={() => reSort("sales")}>Popular</span>
-    //           </div>
-    //         )}
-    //       </div>
-    //     </div>
-    //     <div className="cards">
-    //       {isLoading
-    //         ? "loading"
-    //         : error
-    //         ? "Something went wrong!"
-    //         : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
-    //     </div> */}
-    //   </div>
-    // </div>
+    <div className="sentences">
+      <div className="container">
+        <div className="start-button">
+          <div className="choose-sentences flex">
+            <div className="">
+              <label>წინადადებების რაოდენობა</label>
+              <input
+                ref={amountRef}
+                type="number"
+                placeholder="amount"
+                defaultValue="4"
+              />
+            </div>
+            <div className="">
+              <label>სურათებიანების რაოდენობა</label>
+              <input
+                ref={withPicsRef}
+                type="number"
+                placeholder="withPics"
+                defaultValue="1"
+              />
+            </div>
+            <div className="">
+              <input ref={methodRef} type="string" placeholder="method" />
+              <label for="cars">Choosing method:</label>
+              <select id="cars" name="carlist" form="carform" ref={methodRef}>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div className="">
+              <button
+                onClick={() => {
+                  handleSubmit();
+                  // if (!isStarted) setNewGame(newGame + 1);
+                  // setIsStarted(!isStarted);
+                }}
+              >
+                {isStarted ? "თამაშის გატანა" : "თამაშის გამოტანა"}
+              </button>
+            </div>
+            {/* <input
+          type="submit"
+          className="input-interval"
+          onClick={() => {
+            handleSubmit();
+          }}
+        /> */}
+          </div>
+          {/* <GameInput /> */}
+        </div>
+        {/* <GameInput /> */}
+        {gameDataCollected ? <GameSentences gameData={gameData} /> : null}
+        <div className="cards">
+          {isLoading
+            ? "loading"
+            : error
+            ? "Something went wrong!"
+            : data.map((gig) => <SentenceCard key={gig._id} item={gig} />)}
+        </div>
+      </div>
+    </div>
   );
 }
 

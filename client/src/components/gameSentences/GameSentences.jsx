@@ -1,24 +1,16 @@
 import { useMemo, useRef, useState } from "react";
-import "../components/Components.css";
-import GamePanel from "../components/GamePanel";
-import Dictionary from "./Dictionary/Dictionary";
-// import CreateSentences from "../components/CreateSentences";
+import "../Components.css";
+import GamePanel from "../GamePanel";
+import Dictionary from "../Dictionary/Dictionary";
+import CreateSentences from "../CreateSentences/CreateSentences";
 // import WordsAndMarks from "../components/WordsAndMarks";
 // import PartOfSpeech from "../components/PartsOfSpeech";
 
-import Settings from "../components/GameSettings";
-import Results from "../components/Results";
-import About from "../components/About";
-import about from "../about.json";
-// import GuessPicture from "../components/GuessPicture";
-// import TellPicture from "../components/TellPicture";
-// import tushetians from "../joined.json";
-// import lexicon from "../lexicon.json";
+import Settings from "../GameSettings";
+import Results from "../Results";
+import About from "../About";
+import about from "../../about.json";
 
-// import { getSentences, getData } from "../getData";
-// const randomSentences = getSentences(4, 3);
-// const data = getData(4, 1);
-// const {randomSentences} = data;
 function Game(props) {
   const [point, setPoint] = useState(0);
   const [tries, setTries] = useState(0);
@@ -36,72 +28,39 @@ function Game(props) {
   const [gameType, setGameType] = useState("TRANSLATION");
 
   // შემთხვევითად ამოირჩევა წინადადებები ყოველი თავიდან და დაიშლება ობიექტებად, რომლებიც wordsForCards მასივში მიმდევრობით ჩალაგდება
+  console.log(props);
   const iSentence = useRef();
   const marksAmount = useRef(0);
-  const wordsFromLexicon = props.wordsForGame;
-  console.log(wordsFromLexicon,props);
-  // const wordsForDictionary = useMemo(() =>
-  //   lexicon.filter((wordData) =>
-  //     wordData.theWord.toString().includes(searchWord)
-  //   )
-  // );
-  // const {sentencesData,wordsFromSentences,wordsfromLexicon} = useMemo(()=> getData(4,1),[])
-  console.log(wordsFromLexicon, props);
-  // ძველი ნაწილი
-  // const wordsForCards = useMemo(() => {
-  //   const words = [];
-  //   const tWords = [];
-  //   for (let i = 0; i < randomSentences.length; i++) {
-  //     iSentence.current = i;
-  //     const sentence = randomSentences[i].sentence;
-  //     const translatedWords = randomSentences[i].tWords;
-  //     words.push(...sentence.split(" "));
-  //     tWords.push(
-  //       ...translatedWords.split("@").map((tWord, index) => ({
-  //         tWord,
-  //         isBack: false,
-  //         sentenceIndex: i,
-  //       }))
-  //     );
-  //   }
-  //   marksAmount.current = 0;
-  //   return words.map((value, index) => {
-  //     let newWord;
-  //     let newTrWord;
-  //     let bPunctMark;
-  //     let tPunctMark;
-  //     const signsArray = words[index].split("");
-  //     const marks = [",", ".", ":", ";", "!", "?"];
-  //     if (marks.includes(signsArray[signsArray.length - 1])) {
-  //       marksAmount.current += 1;
-  //       bPunctMark = signsArray[signsArray.length - 1];
-  //       newWord = words[index].substring(0, words[index].length - 1);
-  //     } else {
-  //       newWord = words[index];
-  //     }
-  //     newTrWord = tWords[index].tWord;
-  //     if (tWords[index]) {
-  //       return {
-  //         backText: newWord,
-  //         bPunctMark: bPunctMark ? bPunctMark : null,
-  //         frontText: newTrWord,
-  //         tPunctMark: tPunctMark ? tPunctMark : "",
-  //         sentenceIndex: tWords[index].sentenceIndex,
-  //         id: `s` + `${iSentence.current}` + `w` + `${index}`,
-  //         isBack: false,
-  //       };
-  //     }
-  //   });
-  // }, [newGame]);
+  const wordsFromLexicon = props.gameData.wordsFromLexicon;
+  const chosenSentences = props.gameData.chosenSentences;
+  const wordsFromSentences = props.gameData.wordsFromSentences;
+  const sentencesData = useMemo(() => {
+    const sentencesData = chosenSentences.map((el) => {
+      const marks = [",", ".", ":", ";", "!", "?"];
+      const words = el.sentence
+        .replace('"', "")
+        .replace('"', "")
+        .replace('„', "")
+        .replace('“', "")
+        .replace("(", "")
+        .replace(")", "")
+        .split(" ")
+        .map((word) => {
+          const wordObj = {};
+          if (marks.includes(word[word.length - 1])) {
+            wordObj.word = word.substr(0,(word.length - 1));
+            wordObj.mark = word[word.length - 1];
+          }else{
+            wordObj.word = word;
+          }
+          wordObj.isDone = "false"
+          return wordObj;
+        });
+      return { ...el, words: words, isDone: false };
+    });
+    return sentencesData;
+  }, []);
 
-  console.log(
-    "wordsForCards",
-    // wordsForCards,
-    "randomSentences",
-    // sentencesData,
-    "wordsFromLexicon"
-    // wordsfromLexicon
-  );
   return (
     <div className="chapter">
       <GamePanel
@@ -145,9 +104,8 @@ function Game(props) {
             />
           </div>
         ) : partOfGame === 2 ? (
-          // <div className="">
-          {
-            /* <CreateSentences
+          <div className="">
+            <CreateSentences
               point={point}
               setPoint={setPoint}
               tries={tries}
@@ -197,8 +155,7 @@ function Game(props) {
         ) : partOfGame === 6 ? (
           <div className="">
             <Results point={point} tries={tries} sentences={sentencesData} />
-          </div> */
-          }
+          </div>
         ) : null}
       </div>
     </div>

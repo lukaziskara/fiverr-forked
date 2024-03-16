@@ -1,4 +1,5 @@
 import Word from "../models/word.model.js";
+import BaWord from "../models/BaWord.model.js";
 import Dictionary from "../models/dictionary.model.js";
 
 export const createWord = async (req, res, next) => {
@@ -40,17 +41,24 @@ export const createWord = async (req, res, next) => {
 
 export const getWords = async (req, res, next) => {
   // console.log(req.query.chosenWords, "getWords req");
-  const q = {theWord: req.query.chosenWords};
+  const q = { theWord: req.query.wordsToTranslate };
+  const lang = req.query.lang;
   const filters = {
     ...(q.theWord && { theWord: q.theWord }),
     // ...(q._id && { _id: q._id }),
   };
-  // console.log(filters)
+
+  console.log("filters", filters);
   try {
-    const videoDatas = await Word.find(filters).sort({ [q.sort]: -1 })
+    const videoDatas =
+      lang == "ba"
+        ? await BaWord.find(filters).sort({ [q.sort]: -1 })
+        : lang == "en"
+        ? await Word.find(filters).sort({ [q.sort]: -1 })
+        : none;
 
     res.status(200).send(videoDatas);
-    // console.log(videoDatas, "videodatas","word");
+    console.log("დასაწყისი", req.query, req.params, "videodatas", "word");
   } catch (err) {
     next(err);
   }
