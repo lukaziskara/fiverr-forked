@@ -78,7 +78,8 @@ const Add = () => {
         <h1>Add New Gig</h1>
         <div className="sections">
           <p>
-            diacretial არის &#0304; {Diacritial} '{Diacritial}' ⁀უ ტˠ
+            diacretial არის &#0304; {Diacritial} '{Diacritial}' ⁀უ ტˠ diacretial
+            არის \u0304 U+0300 ჰჰ ა˘ ა\&030x; ͗
           </p>
           <div className="info">
             <label htmlFor="">Title</label>

@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import "../Components.css";
 import GamePanel from "../GamePanel";
-import Dictionary from "../Dictionary/Dictionary";
+import Dictionary from "../Dictionary/Dictionary_test";
 import CreateSentences from "../CreateSentences/CreateSentences";
 // import WordsAndMarks from "../components/WordsAndMarks";
 // import PartOfSpeech from "../components/PartsOfSpeech";
@@ -40,20 +40,20 @@ function Game(props) {
       const words = el.sentence
         .replace('"', "")
         .replace('"', "")
-        .replace('„', "")
-        .replace('“', "")
+        .replace("„", "")
+        .replace("“", "")
         .replace("(", "")
         .replace(")", "")
         .split(" ")
         .map((word) => {
           const wordObj = {};
           if (marks.includes(word[word.length - 1])) {
-            wordObj.word = word.substr(0,(word.length - 1));
+            wordObj.word = word.substr(0, word.length - 1);
             wordObj.mark = word[word.length - 1];
-          }else{
+          } else {
             wordObj.word = word;
           }
-          wordObj.isDone = "false"
+          wordObj.isDone = false;
           return wordObj;
         });
       return { ...el, words: words, isDone: false };
