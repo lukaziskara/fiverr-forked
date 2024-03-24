@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from "react";
 import "../Components.css";
 import GamePanel from "../GamePanel";
-import Dictionary from "../Dictionary/Dictionary_test";
+import Dictionary from "../Dictionary/Dictionary";
 import CreateSentences from "../CreateSentences/CreateSentences";
-// import WordsAndMarks from "../components/WordsAndMarks";
+import WordsAndMarks from "../WordsAndMarks/WordsAndMarks";
 // import PartOfSpeech from "../components/PartsOfSpeech";
 
 import Settings from "../GameSettings";
@@ -60,6 +60,8 @@ function Game(props) {
     });
     return sentencesData;
   }, []);
+
+  // const wordsFromSentences = useMemo(()=>);
 
   return (
     <div className="chapter">
@@ -123,6 +125,7 @@ function Game(props) {
               setPoint={setPoint}
               tries={tries}
               setTries={setTries}
+              sentencesData={sentencesData}
               cardsData={wordsFromSentences}
               marksAmount={marksAmount.current}
               setPartOfGame={setPartOfGame}

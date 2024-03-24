@@ -1,8 +1,9 @@
 import { useState, useRef, useMemo, useEffect } from "react";
+import "./Dictionary.scss";
 // import LeftCard from "./LeftCard";
 // import RightCard from "./RightCard";
 import React from "react";
-import { getShuffled } from "../getData";
+import { getShuffled } from "../../getData";
 
 export default function Dictionary(props) {
   // props-ების დესტრუქტურიზაცია
@@ -22,7 +23,7 @@ export default function Dictionary(props) {
   const [clickedRightCardId, setClickedRightCardId] = useState();
   const [clickedLeftCardId, setClickedLeftCardId] = useState();
   const [isFixedVisible, setIsFixedVisible] = useState(false);
-  const [wonWord, setWonWord] = useState([{ theWord: "", wTranslation: "" }]);
+  const [wonWord, setWonWord] = useState([{ theWord: "", TRANSLATION: "" }]);
   // const [visibleBackIndex, setVisibleBackIndex] = useState();
   // const [clickedSentence, setClickedSentence] = useState(false);
   const [isSecond, setIsSecond] = useState(false);
@@ -33,13 +34,12 @@ export default function Dictionary(props) {
 
   function clickHandler(cardData, index, side) {
     // console.log(cardData, index, side, "dwadefserfes");
+    //
     if (side == "left") {
       leftBack.current = cardData.theWord;
-      // frontTextId.current = index;
       setClickedLeftCardId(index);
       leftId.current = index;
-    }
-    if (side == "right") {
+    } else if (side == "right") {
       rightBack.current = cardData.theWord;
       // theWordId.current = index;
       setClickedRightCardId(index);
@@ -85,12 +85,12 @@ export default function Dictionary(props) {
                 clickHandler(cardData, index, "left");
               }}
             >
-              <div className={firstPartState}>{cardData.wTranslation}</div>
+              <div className={firstPartState}>{cardData.TRANSLATION}</div>
               <div className={secondPartState}>{cardData.theWord}</div>
             </div>
           ))}
           <div className={isFixedVisible ? "fixed-won-word" : "hidden"}>
-            {wonWord[0].wTranslation} - {wonWord[0].theWord}
+            {wonWord[0].TRANSLATION} - {wonWord[0].theWord}
           </div>
         </div>
         <div className="b_words flex_wrap">
@@ -116,14 +116,14 @@ export default function Dictionary(props) {
         <div className="won_words">
           {wonWords.map((wonWord, index) => (
             <div className="won_word">
-              <div>{wonWord.wTranslation}</div> - <div>{wonWord.theWord}</div>
+              <div>{wonWord.TRANSLATION}</div> - <div>{wonWord.theWord}</div>
             </div>
           ))}
         </div>
         <div className="next_game">
-          {/* {shuffledDataForLeft.length === 0 ? (
+          {shuffledDataForLeft.length === 0 ? (
             <button onClick={() => setPartOfGame(2)}>შემდეგი ეტაპი</button>
-          ) : null} */}
+          ) : null}
         </div>
       </div>
     </>

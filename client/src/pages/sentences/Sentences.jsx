@@ -94,23 +94,22 @@ function Sentences() {
   }
 
   function splitText(data) {
-    const words = data.map((el) =>
-      el.sentence
-        .toLowerCase()
-        .replace(",", "")
-        .replace(".", "")
-        .replace('"', "")
-        .replace('"', "")
-        .replace("(", "")
-        .replace(")", "")
-        .replace(":", "")
-        .replace("?", "")
-        .split(" ")
-    );
-    const uniqueWords = words
-      .flat()
-      .filter((value, index, self) => self.indexOf(value) === index);
-    return uniqueWords;
+    const words = data
+      .map((el) =>
+        el.sentence
+          .toLowerCase()
+          .replace(",", "")
+          .replace(".", "")
+          .replace('"', "")
+          .replace('"', "")
+          .replace("(", "")
+          .replace(")", "")
+          .replace(":", "")
+          .replace("?", "")
+          .split(" ")
+      )
+      .flat();
+    return words;
   }
   useEffect(() => {
     if (isStarted) {
@@ -120,7 +119,9 @@ function Sentences() {
         withPicsRef.current.value,
         methodRef.current.value
       );
-      const wordsToTranslate = splitText(chosenSentences);
+      const wordsToTranslate = splitText(chosenSentences).filter(
+        (value, index, self) => self.indexOf(value) === index
+      );
       const lang = "ba";
       newRequest
         .get(`/words`, {
