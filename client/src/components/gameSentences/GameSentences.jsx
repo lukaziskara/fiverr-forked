@@ -4,6 +4,7 @@ import GamePanel from "../GamePanel";
 import Dictionary from "../Dictionary/Dictionary";
 import CreateSentences from "../CreateSentences/CreateSentences";
 import WordsAndMarks from "../WordsAndMarks/WordsAndMarks";
+import GuessPicture from "../GuessPicture/GuessPicture";
 // import PartOfSpeech from "../components/PartsOfSpeech";
 
 import Settings from "../GameSettings";
@@ -14,7 +15,6 @@ import about from "../../about.json";
 function Game(props) {
   const [point, setPoint] = useState(0);
   const [tries, setTries] = useState(0);
-  // const [openedGame, setOpenedGame] = useState(false);
   const [partOfGame, setPartOfGame] = useState(0);
   const [newGame, setNewGame] = useState(0);
   const [isVisibleBack, setIsVisibleBack] = useState(false);

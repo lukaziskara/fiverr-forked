@@ -9,7 +9,7 @@ import Settings from "../components/GameSettings";
 import Results from "../components/Results";
 import About from "../components/About";
 import about from "../about.json";
-import GuessPicture from "../components/GuessPicture";
+import GuessPicture from "../components/GuessPicture/GuessPicture";
 import TellPicture from "../components/TellPicture";
 
 import tushetians from "../joined.json";

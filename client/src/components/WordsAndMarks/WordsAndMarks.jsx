@@ -2,17 +2,18 @@ import { useMemo, useRef, useState } from "react";
 import "./WordsAndMarks.scss";
 
 export default function WordsAndMarks(props) {
-  const { sentencesData } = props;
-  // console.log(props.marksAmount);
-  const cardsData = props.cardsData;
-  // props.marksAmount
+  const { sentencesData, point, setPoint, tries, setTries, setPartOfGame } =
+    props;
   const [clickedWord, setClickedWord] = useState();
   const [clickedMark, setClickedMark] = useState();
+  const [isSecond, setIsSecond] = useState(false);
+
   const markAfterWord = useRef();
   const chosenMark = useRef();
-  const marksAmount = useRef(props.marksAmount);
-  // marksAmount.current--;
+  const wordId = useRef();
+  const markId = useRef();
   const wordsWithMarks = useMemo(() => {
+    console.log(sentencesData)
     const words = sentencesData
       .map((el) => el.words)
       .sort(() => 0.5 - Math.random())
@@ -28,62 +29,46 @@ export default function WordsAndMarks(props) {
     });
     return marks;
   }, []);
-  // console.log(wordsWithMarks, marks);
-  const wordsAndMarks = useMemo(() => {
-    return cardsData.map((cardData) => {
-      // console.log(cardData)
-      return {
-        word: cardData.backText,
-        mark: cardData.bPunctMark,
-        wordOrMark: "word",
-        markClassName: "mark",
-      };
-    });
-  }, []);
 
   function clickHendler(el, index, wordOrMark) {
-    console.log("word", markAfterWord.current, "mark", chosenMark.current);
-    // console.log("კლიკი", el);
+    console.log("მინიჭებამდე");
     if (wordOrMark == "word") {
       markAfterWord.current = el.mark ? el.mark : false;
-      console.log("კლიკი", markAfterWord.current);
-      //   if (el.mark) {
-      //   markAfterWord.current = el.mark;
-      // } else {
-      //   markAfterWord.current = false;
-      // }
+      wordId.current = index;
       setClickedWord(index);
-      // console.log("ახლა შედარდება", chosenMark.current, el.mark);
+      console.log("კლიკი", markAfterWord.current);
     } else if (wordOrMark == "mark") {
       chosenMark.current = el.mark;
+      markId.current = index;
       setClickedMark(index);
     }
-    console.log(markAfterWord.current, chosenMark.current);
+    console.log("შედარდება",wordsWithMarks,markAfterWord.current,chosenMark.current,markAfterWord.current == chosenMark.current);
     if (markAfterWord.current == chosenMark.current) {
-      console.log("დაემთხვა", wordsWithMarks[clickedWord]);
-      wordsWithMarks.splice(index + 1, 0, {
+      console.log("დაემთხვა", wordsWithMarks[wordId.current]);
+      wordsWithMarks.splice(wordId.current + 1, 0, {
         word: "",
         mark: el.mark,
         wordOrMark: "mark",
       });
-      console.log(wordsWithMarks[clickedWord].mark, "mark");
+      console.log(wordsWithMarks[wordId.current].mark, "wordmark");
       wordsWithMarks[clickedWord].mark = "";
-      marks.splice(clickedMark, 1);
+      marks.splice(markId.current, 1);
+      markAfterWord.current = null;
+      wordId.current = null;
+      chosenMark.current = null;
+      markId.current = null;
       setClickedMark(false);
       setClickedWord(false);
       console.log("დაემთხვა, შემდეგ", wordsWithMarks);
 
-      // // setClickedMark(false)
-      // props.setPoint(props.point + 1);
-      // props.setTries(props.tries + 1);
-      // el.mark = null;
-      // chosenMark.current = NaN;
-      // marksAmount.current -= 1;
-      // console.log(marksAmount.current);
-      // // setClickedWord(NaN)
+      setPoint(point + 1);
+      setTries(tries + 1);
     } else {
-      // props.setTries(props.tries + 1);
-      // setClickedWord(index);
+      if (isSecond) {
+        setTries(tries + 1);
+      } else {
+        setIsSecond(true);
+      }
     }
   }
   // console.log(chosenMark,wordsAndMarks)
@@ -123,17 +108,11 @@ export default function WordsAndMarks(props) {
           </div>
         ))}
       </div>
-      {/* {
-        marksAmount.current === 0 ? (
-          <div className="next">
-            <button onClick={() => props.setPartOfGame(6)}>შედეგები</button>
-            <button onClick={() => props.setPartOfGame(4)}>
-              შემდეგი ეტაპი
-            </button>
-          </div>
-        ) : null
-        // console.log(marksAmount.current, "test")
-      } */}
+      <div className="next_game">
+        {marks.length === 0 ? (
+          <button onClick={() => setPartOfGame(4)}>შემდეგი ეტაპი</button>
+        ) : null}
+      </div>
     </div>
   );
 }

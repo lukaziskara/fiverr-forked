@@ -15,7 +15,7 @@ function Home() {
         <Link className="link" to="/myvideos">
           <div className="feature">ჩემი ვიდეოები</div>
         </Link>
-        <Link className="link" to="/gametushetians">
+        <Link className="link" to="/sentences">
           <div className="feature">თუშურის სასწავლი თამაში</div>
         </Link>
       </div>

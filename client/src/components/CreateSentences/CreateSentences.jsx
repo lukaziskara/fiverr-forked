@@ -3,23 +3,13 @@ import { getShuffled } from "../../getData";
 import "./CreateSentences.scss";
 
 export default function CreateSentences(props) {
-  const {
-    point,
-    setPoint,
-    tries,
-    setTries,
-    wordsForCards,
-    setPartOfGame,
-    wordsFromSentences,
-    sentencesData,
-  } = props;
-  // console.log(props);
+  const { point, setPoint, tries, setTries, setPartOfGame, sentencesData } =
+    props;
   const [clickedWord, setClickedWord] = useState(false);
   const [sentenceToFill, setSentenceToFill] = useState(0);
   const [isCelebration, setIsCelebration] = useState(false);
   const [placeToFillId, setPlaceToFillId] = useState(0);
   const [currentSentence, setCurrentSentence] = useState(0);
-
   const wordToReturn = useRef();
   const wordToReturnIndex = useRef();
   const sentenceToGo = useRef(4);
@@ -33,16 +23,8 @@ export default function CreateSentences(props) {
       .flat()
       .sort(() => 0.5 - Math.random());
     return words;
-    // return getShuffled(wordsFromSentences);
   }, []);
   const wonSentences = useMemo(() => [], []);
-
-  console.log(
-    shuffledDataForCS,
-    placeToFillId,
-    currentSentence
-    // shuffledSentencesData[currentSentence].words.length
-  );
 
   function clickHandler(word, index) {
     if (placeToFillId < shuffledSentencesData[currentSentence].words.length) {
@@ -53,19 +35,17 @@ export default function CreateSentences(props) {
         shuffledSentencesData[currentSentence].words[placeToFillId].word
       ) {
         console.log("დაემთხვა");
-        setPoint(props.point + 1);
-        setTries(props.tries + 1);
+        setPoint(point + 1);
+        setTries(tries + 1);
         shuffledSentencesData[currentSentence].words[
           placeToFillId
         ].isDone = true;
-        // placeToFillId.current++;
         setPlaceToFillId(placeToFillId + 1);
         shuffledDataForCS.splice(index, 1);
         setClickedWord(null);
-        // wordToReturn.current;
       } else {
         console.log("ააააააააააააარ დაემთხვა");
-        setTries(props.tries + 1);
+        setTries(tries + 1);
         setClickedWord(index);
       }
     }
@@ -73,6 +53,7 @@ export default function CreateSentences(props) {
 
   useEffect(() => {
     console.log(
+      "useEffect",
       placeToFillId == shuffledSentencesData[currentSentence].words.length
     );
     if (placeToFillId == shuffledSentencesData[currentSentence].words.length) {
@@ -85,7 +66,6 @@ export default function CreateSentences(props) {
         setCurrentSentence(currentSentence + 1);
       }, 3000);
       console.log("წინადადება შეივსო", wonSentences);
-      // wonSentences.push(shuffledSentencesData.splice(index, 1)[0]);
     }
   }, [placeToFillId]);
   return (
@@ -136,8 +116,7 @@ export default function CreateSentences(props) {
         ))}
       </div>
       <div className="next_game">
-        {sentenceToGo.current === 0 ? (
-          // <div className="next">შემდეგი თამაში</div>
+        {currentSentence == shuffledSentencesData.length ? (
           <button onClick={() => setPartOfGame(3)}>შემდეგი ეტაპი</button>
         ) : null}
       </div>
